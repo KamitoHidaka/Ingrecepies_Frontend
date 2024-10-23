@@ -6,6 +6,8 @@ import { Login } from "../../context/Types";
 import { useAuth } from "../../context/useAuth";
 import { Link } from "react-router-dom";
 
+
+
 export const LoginPage = () => {
   const {
     register,
@@ -55,7 +57,6 @@ export const LoginPage = () => {
             El correo electronico es requerido
           </p>
         )}
-        <CustomIn
         <input
           type="password"
           {...register("password", { required: true })}
