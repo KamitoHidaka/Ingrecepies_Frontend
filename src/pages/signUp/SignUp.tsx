@@ -1,10 +1,15 @@
 import "./SignUp.css";
 
-import { useForm } from "react-hook-form";
-import { useAuth } from "../../context/useAuth";
-import { User } from "../../context/Types";
-import { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
+
+import { useForm } from "react-hook-form";
+import { useEffect } from "react";
+
+import { User } from "../../context/Types.ts";
+import { useAuth } from "../../context/useAuth.ts";
+import { FormAlert } from "../../components/common/FormAlert/FormAlert";
+import { CustomInput } from "../../components/common/textInput/CustomInput";
+import { CustomButton } from "../../components/common/customButton/CustomButton";
 
 export const SignUpPage = () => {
   const {
@@ -18,7 +23,7 @@ export const SignUpPage = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (isAuthenticated) navigate("/recepies");
+    if (isAuthenticated) navigate("/");
   }, [isAuthenticated, navigate]);
 
   const onSubmit = handleSubmit(async (data) => {
@@ -27,91 +32,77 @@ export const SignUpPage = () => {
 
   return (
     <div className="signup-container">
-      {signUpErrors.length > 0 &&
-        signUpErrors.map((error, i) => (
-          <p
-            key={i}
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            {error}
-          </p>
-        ))}
+      <div className="signup-form">
+        <h1>Crear Cuenta</h1>
 
-      <form onSubmit={onSubmit}>
-        <input
-          type="text"
-          {...register("userName", { required: true })}
-          placeholder="Nombre de usuario"
-        />
-        {errors?.userName?.type === "required" && (
-          <p
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            Nombre de usuario es requerido
-          </p>
-        )}
+        {signUpErrors.length > 0 &&
+          signUpErrors.map((error, i) => <FormAlert key={i} Text={error} />)}
 
-        <input
-          type="email"
-          {...register("email", { required: true })}
-          placeholder="Correo Electronico"
-        />
-        {errors?.email?.type === "required" && (
-          <p
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            Correo electronico es requerido
-          </p>
-        )}
+        <form onSubmit={onSubmit}>
+          <CustomInput
+            Type="text"
+            AutoComplete="username"
+            Placeholder="Nombre de usuario"
+            register={register("userName", { required: true })}
+          />
+          {errors?.userName?.type === "required" && (
+            <FormAlert
+              ClassName="form-inline-error"
+              Text="Nombre de usuario es requerido"
+            />
+          )}
 
-        <input
-          type="password"
-          {...register("password", { required: true })}
-          placeholder="Contraseña"
-        />
-        {errors?.password?.type === "required" && (
-          <p
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            Contraseña es requerida
-          </p>
-        )}
+          <CustomInput
+            Type="email"
+            AutoComplete="email"
+            Placeholder="Correo Electronico"
+            register={register("email", { required: true })}
+          />
+          {errors?.userName?.type === "required" && (
+            <FormAlert
+              ClassName="form-inline-error"
+              Text="El correo electronico es requerido"
+            />
+          )}
 
-        <input
-          type="text"
-          maxLength={10}
-          {...register("phoneNumber", { required: false })}
-          placeholder="Numero de telefono"
-        />
+          <CustomInput
+            Type="password"
+            AutoComplete="current-password"
+            Placeholder="Contraseña"
+            register={register("password", { required: true })}
+          />
+          {errors?.password?.type === "required" && (
+            <FormAlert
+              ClassName="form-inline-error"
+              Text="La contraseña es requerida"
+            />
+          )}
 
-        <button type="submit">Registrarse</button>
-      </form>
+          <CustomInput
+            Type="text"
+            AutoComplete="phoneNumber"
+            Placeholder="Numero de Celular"
+            MaxLenght={10}
+            register={register("phoneNumber", { required: true })}
+          />
 
-      <p>¿Ya tienes cuenta? <br/><Link to="/login">Inicia Sesion</Link></p>
+          {errors?.phoneNumber?.type === "required" && (
+            <FormAlert
+              ClassName="form-inline-error"
+              Text="El numero de celular es requerido"
+            />
+          )}
+          <CustomButton Type="submit" Text="Registrarse" />
+        </form>
+
+        <p>
+          ¿Ya tienes cuenta?{" "}
+          <Link style={{ fontWeight: 600 }} to="/login">
+            Inicia Sesion
+          </Link>
+        </p>
+      </div>
+      <div className="signup-background"></div>
     </div>
   );
 };

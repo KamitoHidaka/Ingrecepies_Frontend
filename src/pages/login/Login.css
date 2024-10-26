@@ -1,13 +1,24 @@
+.login-background{
+    height: 100dvh;
+    width: 65dvw;
+    background-image: url('../../assets/Kitchen.webp');
+    background-size: cover;
+}
 .login-container{    
+    display: flex;
+    text-align: center;
+}
+
+.login-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-width: 25rem;
-    width: 30rem;
-    height: 60dvh;
-    padding: 3rem;
-    border-radius: 3rem;
-
+    width: 35dvw;
+    padding: 3rem; 
+    
 }
+
+
+
 
 

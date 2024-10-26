@@ -1,21 +1,32 @@
 import "./Login.css";
+import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
+import { useEffect } from "react";
 
-import { Login } from "../../context/Types";
-import { useAuth } from "../../context/useAuth";
-import { Link } from "react-router-dom";
+import { Login } from "../../context/Types.ts";
+import { useAuth } from "../../context/useAuth.ts";
 
-
+import { CustomButton } from "../../components/common/customButton/CustomButton";
+import { CustomInput } from "../../components/common/textInput/CustomInput";
+import { FormAlert } from "../../components/common/FormAlert/FormAlert";
 
 export const LoginPage = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors},
+    formState: { errors },
   } = useForm<Login>();
 
-  const { login, errors: loginErrors } = useAuth();
+  const { login, isAuthenticated, errors: loginErrors } = useAuth();
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate("/");
+    }
+  }, [isAuthenticated, navigate]);
 
   const onSubmit = handleSubmit(async (data) => {
     login(data);
@@ -23,63 +34,49 @@ export const LoginPage = () => {
 
   return (
     <div className="login-container">
-      {loginErrors.length > 0 &&
-        loginErrors.map((error, i) => (
-          <p
-            key={i}
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            {error}
-          </p>
-        ))}
-      <form onSubmit={onSubmit}>
-        <input
-          type="email"
-          {...register("email", { required: true })}
-          placeholder="Correo Electronico"
-        />
-        {errors?.email?.type === "required" && (
-          <p
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            El correo electronico es requerido
-          </p>
-        )}
-        <input
-          type="password"
-          {...register("password", { required: true })}
-          placeholder="Contraseña"
-        />
-        {errors?.password?.type === "required" && (
-          <p
-            style={{
-              fontSize: "1.5rem",
-              color: "red",
-              margin: "0",
-              padding: "0",
-              paddingLeft: "2rem",
-            }}
-          >
-            La contraseña es requerida
-          </p>
-        )}
+      <div className="login-form">
+        <h1>Iniciar Sesion</h1>
 
-        <button type="submit">Login</button>
-      </form>
+        {loginErrors.length > 0 &&
+          loginErrors.map((error, i) => <FormAlert key={i} Text={error} />)}
 
-      <p>¿No tienes una cuenta? <br/><Link to="/signup">Registrate</Link></p>
+        <form onSubmit={onSubmit}>
+          <CustomInput
+            Type="email"
+            AutoComplete="email"
+            Placeholder="Correo Electronico"
+            register={register("email", { required: true })}
+          />
+          {errors?.email?.type === "required" && (
+            <FormAlert
+              ClassName="form-inline-error"
+              Text="El correo electronico es requerido"
+            />
+          )}
+
+          <CustomInput
+            Type="password"
+            AutoComplete="current-password"
+            Placeholder="Contraseña"
+            register={register("password", { required: true })}
+          />
+          {errors?.password?.type === "required" && (
+            <FormAlert
+              ClassName="form-inline-error"
+              Text="La contraseña es requerida"
+            />
+          )}
+          <CustomButton Text="Iniciar Sesion" Type="submit" />
+        </form>
+
+        <p>
+          ¿No tienes una cuenta?{" "}
+          <Link style={{ fontWeight: 600 }} to="/signup">
+            Registrate Aqui
+          </Link>
+        </p>
+      </div>
+      <div className="login-background"></div>
     </div>
   );
 };

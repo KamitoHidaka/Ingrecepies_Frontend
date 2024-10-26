@@ -1,0 +1,29 @@
+@import '../../../constants/colors.css';
+
+.form-alert-error{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 3rem;
+    background-color: var(--warning);
+    margin: .5rem 0;
+    padding: 2rem;
+}
+
+.form-inline-error{
+    background-color: transparent;
+    margin: -1rem;
+    justify-content: left;
+}
+
+.form-inline-error p{
+    color: var(--warning);
+
+}
+
+
+.form-alert-success{
+    background-color: var(--success);
+}
+

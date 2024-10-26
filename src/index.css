@@ -13,18 +13,22 @@
 }
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
   font-size: 1.7rem;
+  width: 100%;
+}
+
+p{
+  font-size: 1.2rem;
+
 }
 
 *,*::before , *::after{
   box-sizing: inherit;
 }
 a{
-  color: var(text);
+  color: var(--urls);
   text-decoration: none;
 }
 button, input, textarea{
@@ -53,14 +57,14 @@ button:hover {
   background-color: var(--urls_hover); 
 }
 
-input{
-  width: 100%;
-  height: 6dvh;
-  border-radius: 2rem;
-  padding: 2rem;
-  margin: 1rem;
-  border: solid #dadada ;
-  outline: none;
-  font-size: medium;
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
+    background-color: transparent !important;
+    -webkit-text-fill-color: var(--text) !important;
+}
+
  
-};

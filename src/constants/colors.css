@@ -5,6 +5,8 @@
   --primary: #e7eef3;
   --secondary: #ffd588;
   --accent: #ffa024;
-  --urls:#51a0eb;
-  --urls_hover:#1c8ce8;
+  --urls:#1c8ce8;
+  --urls_hover:#51a0eb;
+  --warning: #f04343;
+  --success: #82f394;
 }

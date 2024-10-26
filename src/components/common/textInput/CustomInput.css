@@ -1,0 +1,32 @@
+@import '../../../constants/colors.css';
+ 
+.default-input{
+    display: flex;
+    justify-content: center; 
+    align-items: center;      
+    height: 6dvh;            
+    width: 100%;            
+    margin:auto;
+    margin-top: 1rem;
+    cursor: pointer;
+    text-align: center;
+    color: var(--text);   
+    font-size: 1.2rem;          
+    border: none;
+    border-bottom: solid .1rem var(--primary);
+    transition: border-color 0.3s ease;
+    background-color: transparent;
+  }
+  
+  .default-input:focus {
+    border-color: var(--urls);
+  }
+
+  .default-input::placeholder{
+    color: var(--text);
+    font:400 1.2rem Poppins;
+    
+  }
+
+
+  
