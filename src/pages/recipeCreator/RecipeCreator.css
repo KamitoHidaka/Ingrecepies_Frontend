@@ -1,0 +1,156 @@
+.recipe-creator-container{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.recipe-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60dvw;
+    background-color: var(--white);
+    border-radius: 5rem;
+    margin: 3rem 0;
+    padding-bottom: 3rem;
+    box-shadow:  8px 8px 16px #161616,
+                 -8px -8px 16px #343434;
+                
+}
+
+.recipe-form-container > *{
+    width: 45dvw;
+}
+
+.recipe-form-container section{
+    margin-top: 1rem auto;
+}
+#image-input{
+    display: none;
+}
+
+.image-label{
+    height: 40rem;
+    display: flex;
+    border-radius: 5rem 5rem 0 0 ;
+    width: 100%;
+    cursor: pointer;
+    background-color: var(--background);
+    transition: all .3s ease;
+}
+
+.image-label:hover{
+    background-color: var(--light_black);
+}
+
+.recipe-image{
+    width: 100%;
+    height: 40rem;
+    border-radius: 5rem 5rem 0 0 ;
+    object-position: center;
+    margin: auto;
+}
+.input-recipe{
+    font:600 2rem Poppins;
+    color:var(--dark_text);
+    border-bottom: solid .2rem var(--dark_text);
+    width: 35dvw;
+    height: 5rem;
+}
+
+.input-recipe::placeholder{
+    color: var(--placeholder);
+    font:600 2rem Poppins;
+}
+
+.input-recipe:-webkit-autofill,
+.input-recipe:-webkit-autofill:hover,
+.input-recipe:-webkit-autofill:focus,
+.input-recipe:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s !important;
+    background-color: transparent !important;
+    font:600 1.2rem Poppins;
+    -webkit-text-fill-color: var(--dark_text) !important;
+}
+.title-container{
+    display: flex;
+    margin: auto;
+}
+
+textarea{
+    font:600 2rem Poppins;
+    color:var(--dark_text);
+    border: none;
+    border-bottom: solid .2rem var(--dark_text);
+    background: none;
+    margin-bottom: 1rem;
+    height: 15dvh;
+    resize: none;
+
+}
+
+.multiple-input{
+    display: flex;
+}
+
+.ingredient{
+    width: 30rem;
+}
+.quantity{
+    width: 10rem;
+}
+
+.icon{
+    width: 3rem;
+    transition: all .3s ease;
+}
+
+.remove{
+    width: 6rem;
+    height: 4rem;
+    background-color: var(--primary);
+    box-shadow: #c2c2c2 1px 1px 5px;
+    transition: all .3s ease;
+}
+.remove:hover{
+    background-color: var(--warning);
+}
+
+.remove:hover .icon{
+    filter: invert(100%);
+}
+
+.add{
+    width: 25dvw;
+}
+
+.add:hover{
+    background-color: var(--urls);
+}
+
+
+.step{
+    width: 38dvw;
+}
+
+.title{
+    color:var(--dark_text);
+    margin: 2rem 0 -0.2rem;
+}
+
+.submit{
+    width: 30dvw;
+    height: 6rem;
+    margin-top: 5rem;
+    background-color: var(--primary);
+    box-shadow: #c2c2c2 1px 1px 5px;
+    transition: all .3s ease;
+    border: none;
+}
+
+.submit:hover{
+    background-color: var(--urls);
+    color: var(--text);
+}

@@ -1,0 +1,19 @@
+.custom-select {
+  padding: .5rem;
+  background-color: var(--primary);
+  color: var(--dark_text);
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  text-align: center;
+  font:600 2rem Poppins;
+  box-shadow: #c2c2c2 1px 1px 5px;
+  margin: 2rem auto 2rem;
+  outline: none;
+  transition: all .3s ease;
+  height: 4rem;
+}
+
+.custom-select:hover {
+  background-color: var(--white);
+}

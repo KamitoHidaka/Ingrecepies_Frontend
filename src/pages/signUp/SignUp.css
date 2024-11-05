@@ -8,12 +8,26 @@
     display: flex;
     text-align: center;
 }
-
 .signup-form{
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 35dvw;
-    padding: 3rem; 
-    
+    padding: 3rem;     
+}
+.home-icon{
+    width: 3rem;
+    height: 3rem;
+    filter: invert(100%);
+    cursor: pointer;
+    transition: all .1s ease; 
+    border-radius: 100%;  
+}
+.home-icon:hover{
+    filter: invert(76%) sepia(17%) saturate(4811%) hue-rotate(174deg)
+    brightness(103%) contrast(101%);
+}
+.home-icon img{
+    width: 100%;
+    border-radius: 100%;
 }

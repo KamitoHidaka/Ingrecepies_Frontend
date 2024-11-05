@@ -1,5 +1,5 @@
 import axios from "./axios";
-import { Login, User } from "../context/Types";
+import { Login, User } from "../context/types/Types";
 
 export const signupRequest = async (user: User) => axios.post(`/signup`, user);
 

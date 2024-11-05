@@ -1,15 +1,18 @@
 import "./Login.css";
+
 import { Link, useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
 import { useEffect } from "react";
 
-import { Login } from "../../context/Types.ts";
-import { useAuth } from "../../context/useAuth.ts";
+import { Login } from "../../context/types/Types.ts";
+import { useAuth } from "../../context/auth/useAuth.ts";
 
 import { CustomButton } from "../../components/common/customButton/CustomButton";
-import { CustomInput } from "../../components/common/textInput/CustomInput";
+import { CustomInput } from "../../components/common/customInput/CustomInput.tsx";
 import { FormAlert } from "../../components/common/FormAlert/FormAlert";
+
+import HomeIcon from "../../assets/home.webp"
 
 export const LoginPage = () => {
   const {
@@ -24,7 +27,7 @@ export const LoginPage = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      navigate("/");
+      navigate("/home");
     }
   }, [isAuthenticated, navigate]);
 
@@ -35,6 +38,7 @@ export const LoginPage = () => {
   return (
     <div className="login-container">
       <div className="login-form">
+        <Link to="/home" className="home-icon"><img src={HomeIcon}  /></Link>
         <h1>Iniciar Sesion</h1>
 
         {loginErrors.length > 0 &&

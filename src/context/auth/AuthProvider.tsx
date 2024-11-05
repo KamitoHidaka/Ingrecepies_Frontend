@@ -1,7 +1,11 @@
 import { useState, ReactNode, useEffect } from "react";
-import { loginRequest, signupRequest, verifyTokenRequest } from "../api/auth";
+import {
+  loginRequest,
+  signupRequest,
+  verifyTokenRequest,
+} from "../../api/auth";
 import AuthContext from "./AuthContext";
-import { User, Login, AuthContextType } from "../context/Types";
+import { User, Login, AuthContextType } from "../types/Types";
 
 import Cookies from "js-cookie";
 
@@ -32,10 +36,12 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       if (res.status === 200) {
         setUser(res.data);
         setAuthenticated(true);
+        setErrors([]);
       }
     } catch (error) {
       const err = error as { response: { data: string[] } };
       setErrors(err.response.data);
+      console.log(err.response.data);
     }
   };
 
@@ -44,10 +50,18 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
       const res = await loginRequest(user);
       setUser(res.data);
       setAuthenticated(true);
+      setErrors([]);
     } catch (error) {
       const err = error as { response: { data: string[] } };
       setErrors(err.response.data);
+      console.log(err.response.data);
     }
+  };
+
+  const logout = () => {
+    Cookies.remove("token");
+    setAuthenticated(false);
+    setUser(null);
   };
 
   useEffect(() => {
@@ -85,6 +99,7 @@ export const AuthProvider = ({ children }: AuthProviderProps) => {
           user,
           signUp,
           login,
+          logout,
           isAuthenticated,
           errors,
           loading,
